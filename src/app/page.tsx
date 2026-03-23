@@ -30,7 +30,7 @@ const anatomyImages = [
 const CopreLogo = ({ className = "text-3xl" }: { className?: string }) => (
   <span className={`tracking-tighter text-gray-950 flex items-center ${className} font-sans`}>
     <span className="font-extrabold tracking-[-0.05em]">CO</span>
-    <span className="font-light italic ml-[2px] tracking-normal">PRÊ.</span>
+    <span className="font-light italic ml-[2px] tracking-normal">PÊ.</span>
   </span>
 );
 
@@ -332,12 +332,12 @@ export default function Home() {
           <span className="font-light italic text-gray-400">PEDALAMOS PARA CHEGAR.</span>
         </h2>
         <p className="mt-16 text-lg md:text-2xl text-gray-800 font-light max-w-3xl mx-auto leading-relaxed tracking-wide">
-          A COPRÊ nasce da obsessão por unir a estética das ruas com a brutalidade do asfalto. 
+          A COPÊ. nasce da obsessão por unir a estética das ruas com a brutalidade do asfalto. 
           Desenhamos armaduras para aqueles que encontram na exaustão a sua forma mais pura de expressão. 
           Não somos uma marca de esportes. Somos uma cultura.
         </p>
         <Link href="/about" className="mt-16 border-b-2 border-black text-black text-[10px] font-bold uppercase tracking-[0.3em] pb-1.5 hover:text-gray-500 hover:border-gray-500 transition-all">
-          Descubra a Coprê
+          Descubra a Copê
         </Link>
       </section>
 
@@ -387,7 +387,7 @@ export default function Home() {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-4 block">Coprê Tech</span>
+              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-4 block">Copê. Tech</span>
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9]">
                 Projetado <br/><span className="font-light italic text-gray-400">Para Elementos</span>
               </h2>
@@ -417,7 +417,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 10. FOOTER COPRÊ */}
+      {/* 10. FOOTER COPÊ */}
       <footer className="bg-[#F9F9F9] pt-32 pb-16 px-6 lg:px-16 border-t border-gray-100">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
           <div className="col-span-1 md:col-span-4 pr-0 md:pr-12">
@@ -463,7 +463,7 @@ export default function Home() {
         </div>
         
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] text-gray-400 font-bold uppercase tracking-[0.3em] pt-8 border-t border-gray-200">
-          <p>&copy; {new Date().getFullYear()} COPRÊ. TODOS OS DIREITOS RESERVADOS.</p>
+          <p>&copy; {new Date().getFullYear()} COPÊ. TODOS OS DIREITOS RESERVADOS.</p>
           <div className="flex space-x-8 mt-6 md:mt-0">
             <Link href="#" className="hover:text-gray-950 transition-colors">Termos de Uso</Link>
             <Link href="#" className="hover:text-gray-950 transition-colors">Privacidade</Link>

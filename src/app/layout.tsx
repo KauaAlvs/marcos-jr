@@ -9,8 +9,8 @@ import { UIProvider } from "@/context/UIContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "COPRÊ.",
-  description: "Equipamentos premium de ciclismo inspirados no design clean da MAAP.",
+  title: "COPÊ.",
+  description: "Vista copê.",
 };
 
 export default function RootLayout({

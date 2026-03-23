@@ -13,7 +13,7 @@ import { supabase } from '@/lib/supabase';
 const CopreLogo = ({ className = "text-2xl" }: { className?: string }) => (
   <span className={`tracking-tighter text-gray-950 flex items-center ${className} font-sans`}>
     <span className="font-extrabold tracking-[-0.05em]">CO</span>
-    <span className="font-light italic ml-[2px] tracking-normal">PRÊ.</span>
+    <span className="font-light italic ml-[2px] tracking-normal">PÊ.</span>
   </span>
 );
 

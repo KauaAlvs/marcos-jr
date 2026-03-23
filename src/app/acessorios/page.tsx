@@ -14,7 +14,7 @@ import { supabase } from '@/lib/supabase';
 const CopreLogo = ({ className = "text-3xl" }: { className?: string }) => (
   <span className={`tracking-tighter text-gray-950 flex items-center ${className} font-sans`}>
     <span className="font-extrabold tracking-[-0.05em]">CO</span>
-    <span className="font-light italic ml-[2px] tracking-normal">PRÊ.</span>
+    <span className="font-light italic ml-[2px] tracking-normal">PÊ.</span>
   </span>
 );
 
@@ -206,7 +206,7 @@ export default function AcessoriosPage() {
               viewport={{ once: true }}
               className="text-[18vw] font-extrabold tracking-[-0.08em] leading-none text-gray-950 select-none text-center"
             >
-              COPRÊ.
+              COPÊ.
             </motion.h2>
           </div>
 
@@ -253,7 +253,7 @@ export default function AcessoriosPage() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-gray-100 text-[9px] font-bold tracking-[0.3em] text-gray-400 uppercase">
-            <p>© {new Date().getFullYear()} COPRÊ SYNDICATE. TODOS OS DIREITOS RESERVADOS.</p>
+            <p>© {new Date().getFullYear()} COPÊ. TODOS OS DIREITOS RESERVADOS.</p>
             <div className="flex gap-8 mt-6 md:mt-0">
               <Link href="#" className="hover:text-gray-950">Privacidade</Link>
               <Link href="#" className="hover:text-gray-950">Termos</Link>

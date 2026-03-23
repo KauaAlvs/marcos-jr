@@ -30,7 +30,7 @@ const anatomyImages = [
 const CopreLogo = ({ className = "text-3xl" }: { className?: string }) => (
   <span className={`tracking-tighter text-gray-950 flex items-center ${className} font-sans`}>
     <span className="font-extrabold tracking-[-0.05em]">CO</span>
-    <span className="font-light italic ml-[2px] tracking-normal">PRÊ.</span>
+    <span className="font-light italic ml-[2px] tracking-normal">PÊ.</span>
   </span>
 );
 
@@ -478,7 +478,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           </div>
         </div>
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center text-[9px] text-gray-400 font-bold uppercase tracking-[0.3em] pt-8 border-t border-gray-200">
-          <p>&copy; {new Date().getFullYear()} COPRÊ. TODOS OS DIREITOS RESERVADOS.</p>
+          <p>&copy; {new Date().getFullYear()} COPÊ. TODOS OS DIREITOS RESERVADOS.</p>
           <div className="flex space-x-8 mt-6 md:mt-0">
             <Link href="#" className="hover:text-gray-950 transition-colors">Termos de Uso</Link>
             <Link href="#" className="hover:text-gray-950 transition-colors">Privacidade</Link>
