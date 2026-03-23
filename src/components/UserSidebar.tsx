@@ -7,6 +7,16 @@ import { X, User, MapPin, Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, AlertTri
 import { useUI } from '@/context/UIContext'; 
 import { supabase } from '@/lib/supabase';
 
+// ==========================================
+// LOGO COPRÊ
+// ==========================================
+const CopreLogo = ({ className = "text-2xl" }: { className?: string }) => (
+  <span className={`tracking-tighter text-gray-950 flex items-center ${className} font-sans`}>
+    <span className="font-extrabold tracking-[-0.05em]">CO</span>
+    <span className="font-light italic ml-[2px] tracking-normal">PRÊ.</span>
+  </span>
+);
+
 // --- Tipagens Rigorosas ---
 interface FormData {
   nome: string; sobrenome: string;
@@ -67,7 +77,6 @@ export default function UserSidebar() {
 
   // --- Efeito: Monitora o Status de Login do Supabase ---
   useEffect(() => {
-    // Busca a sessão inicial
     const fetchSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setCurrentUser(session?.user || null);
@@ -80,7 +89,6 @@ export default function UserSidebar() {
 
     fetchSession();
 
-    // Fica escutando mudanças (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setCurrentUser(session?.user || null);
       if (session?.user) {
@@ -94,7 +102,6 @@ export default function UserSidebar() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Busca o nome do usuário na nossa tabela
   const fetchUserProfile = async (userId: string) => {
     try {
       const { data, error } = await supabase
@@ -111,7 +118,6 @@ export default function UserSidebar() {
     }
   };
 
-  // --- Função de Logout ---
   const handleLogout = async () => {
     setIsAuthLoading(true);
     await supabase.auth.signOut();
@@ -121,7 +127,6 @@ export default function UserSidebar() {
     setSuccessMsg(null);
   };
 
-  // Fecha a sidebar ao apertar ESC
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeSidebarAndReset();
@@ -216,7 +221,6 @@ export default function UserSidebar() {
         
         if (error) throw error; 
         
-        // Se der sucesso, o onAuthStateChange vai detectar e mudar a tela sozinho
         setSuccessMsg("Carregando sua conta...");
 
       } else {
@@ -247,7 +251,6 @@ export default function UserSidebar() {
         if (dbError) throw new Error("Erro ao salvar endereço no banco de dados.");
 
         setSuccessMsg("Conta criada! Verifique seu e-mail para confirmar.");
-        // Se ele não precisa confirmar email, o onAuthStateChange loga ele direto
       }
 
     } catch (error: any) {
@@ -300,9 +303,9 @@ export default function UserSidebar() {
           >
             {/* Header Comum */}
             <div className="flex items-center justify-between mb-6">
-              <span className="text-2xl font-bold tracking-tighter text-gray-950">
-                MARCOS<span className="font-light">.JR</span>
-              </span>
+              {/* LOGO ATUALIZADA AQUI */}
+              <CopreLogo className="text-2xl" />
+              
               <button 
                 onClick={closeSidebarAndReset}
                 className="p-2 -mr-2 text-gray-400 hover:text-black transition-colors"
@@ -312,7 +315,6 @@ export default function UserSidebar() {
               </button>
             </div>
 
-            {/* Verifica se está carregando o Auth para não dar flicker na tela */}
             {isAuthLoading ? (
               <div className="flex-1 flex items-center justify-center">
                 <Loader2 className="w-8 h-8 animate-spin text-gray-300" />
@@ -320,12 +322,12 @@ export default function UserSidebar() {
             ) : currentUser ? (
               
               // ==========================================
-              // TELA DE USUÁRIO LOGADO (VIP MENU)
+              // TELA DE USUÁRIO LOGADO
               // ==========================================
               <div className="flex-1 flex flex-col animate-in fade-in duration-500">
                 <div className="mb-10 pt-4">
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Bem-vindo(a),</p>
-                  <h2 className="text-3xl font-light text-gray-950 uppercase tracking-wider">
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-1">Syndicate Member</p>
+                  <h2 className="text-3xl font-light text-gray-950 uppercase tracking-tighter">
                     {userName || 'Ciclista'}
                   </h2>
                 </div>
@@ -337,7 +339,7 @@ export default function UserSidebar() {
                     className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors group"
                   >
                     <div className="flex items-center">
-                      <Settings className="w-5 h-5 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
+                      <Settings className="w-4 h-4 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
                       <span className="text-xs font-bold uppercase tracking-widest text-gray-900">Minha Conta</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black transition-transform group-hover:translate-x-1" />
@@ -349,8 +351,8 @@ export default function UserSidebar() {
                     className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors group"
                   >
                     <div className="flex items-center">
-                      <Package className="w-5 h-5 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
-                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900">Minhas Compras</span>
+                      <Package className="w-4 h-4 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
+                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900">Histórico de Pedidos</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -361,8 +363,8 @@ export default function UserSidebar() {
                     className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors group"
                   >
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
-                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900">Meu Endereço</span>
+                      <MapPin className="w-4 h-4 mr-4 text-gray-400 group-hover:text-black transition-colors" strokeWidth={1.5} />
+                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900">Endereço de Entrega</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-black transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -371,7 +373,7 @@ export default function UserSidebar() {
                 <div className="mt-auto pt-6 border-t border-gray-100">
                   <button 
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center p-4 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-black hover:bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-center p-4 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black hover:bg-gray-50 transition-colors"
                   >
                     <LogOut className="w-4 h-4 mr-2" strokeWidth={1.5} />
                     Sair da Conta
@@ -385,8 +387,8 @@ export default function UserSidebar() {
               // TELA DE LOGIN / CADASTRO
               // ==========================================
               <div className="flex-1 flex flex-col">
-                <h2 className="text-xl font-light text-gray-950 uppercase tracking-widest mb-6">
-                  {isLogin ? 'Acesse sua conta' : 'Crie sua conta'}
+                <h2 className="text-3xl font-light tracking-tighter text-gray-950 uppercase mb-8">
+                  {isLogin ? 'Acessar Conta' : 'Criar Conta'}
                 </h2>
 
                 <AnimatePresence mode="wait">
@@ -475,11 +477,11 @@ export default function UserSidebar() {
 
                       <div className="mt-auto flex items-center gap-3 pt-6 border-t border-gray-100">
                         {currentStep > 1 && (
-                          <button type="button" onClick={() => setCurrentStep(prev => prev - 1)} disabled={isLoading} className="px-5 py-3 border border-gray-200 text-xs font-bold uppercase tracking-widest text-gray-600 hover:border-black hover:text-black transition-all disabled:opacity-50">
+                          <button type="button" onClick={() => setCurrentStep(prev => prev - 1)} disabled={isLoading} className="px-5 py-4 border border-gray-200 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 hover:border-black hover:text-black transition-all disabled:opacity-50">
                             Voltar
                           </button>
                         )}
-                        <button type="submit" disabled={isLoading} className="flex-1 flex justify-center items-center py-3 px-6 border border-transparent text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-gray-800 transition-colors group disabled:opacity-70">
+                        <button type="submit" disabled={isLoading} className="flex-1 flex justify-center items-center py-4 px-6 border border-transparent text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-gray-800 transition-colors group disabled:opacity-70">
                           {isLoading ? (
                               <Loader2 className="w-4 h-4 animate-spin" />
                           ) : (
@@ -502,7 +504,7 @@ export default function UserSidebar() {
                            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                          </button>
                        </div>
-                       <button type="submit" disabled={isLoading} className="w-full flex justify-center items-center py-3.5 px-4 border border-transparent text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-gray-800 transition-colors mt-6 disabled:opacity-70">
+                       <button type="submit" disabled={isLoading} className="w-full flex justify-center items-center py-4 px-4 border border-transparent text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-gray-800 transition-colors mt-6 disabled:opacity-70">
                          {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Entrar'}
                        </button>
                     </div>
@@ -513,7 +515,7 @@ export default function UserSidebar() {
                   <button 
                     onClick={() => { setIsLogin(!isLogin); setCurrentStep(1); setErrorMsg(null); }} 
                     disabled={isLoading}
-                    className="text-xs font-medium text-gray-500 hover:text-black transition-colors underline underline-offset-4 disabled:opacity-50"
+                    className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors underline-offset-4 disabled:opacity-50"
                   >
                     {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
                   </button>

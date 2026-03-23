@@ -9,7 +9,7 @@ import { UIProvider } from "@/context/UIContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MARCOS.JR | Performance & Design no Ciclismo",
+  title: "COPRÊ.",
   description: "Equipamentos premium de ciclismo inspirados no design clean da MAAP.",
 };
 
